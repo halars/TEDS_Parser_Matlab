@@ -8,7 +8,7 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
     int32 status;
     uInt8 * stream;
     uInt8 _template;
-
+    
 	status = DAQmxConfigureTEDS(channel, "");
 
     //  Get manufacturer ID
@@ -102,4 +102,9 @@ double getSensitivity(uInt8 * data, uInt8 _template)
     }
     
     return sensitivity;
+}
+
+int32 resetDevice (const char* device)
+{
+    return DAQmxResetDevice(device);
 }

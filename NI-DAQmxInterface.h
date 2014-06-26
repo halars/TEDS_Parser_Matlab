@@ -24,3 +24,5 @@ uInt8 * getTedsDataStream(const char* channel);
 uInt8 getTedsTemplate(uInt8 * data);
 double getSensitivity(uInt8 * data, uInt8 _template);
 char * getUnit(uInt8 * data, uInt8 _template);
+
+int32 resetDevice (const char* device);
