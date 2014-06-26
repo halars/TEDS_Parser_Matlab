@@ -1,8 +1,8 @@
 TEDS Parser for Matlab v1.0a (Experimental)
 ==================
-This mex-interface is written in C up against National Instruments (NI) NIDAQmx driver. It serves as a base for further implementation of TEDS compatibility. This was developed due to the lack of such compatibility in MatLab DAQ Toolbox.
+This mex-interface is written in C up against National Instruments (NI) NIDAQmx driver. It serves as a base for further implementation of TEDS support in MatLab. This was developed due to the lack of such support in MatLab DAQ Toolbox.
 
-The implementation is based on *IEEE 1451.4 Sensor Templates Overview* and *IEEE 1451.4 Smart Transducers Template Description Language* (TDL) documents. A vital clue was delivered by [*Andrew Walsh*](http://awalsh128.blogspot.dk/2011/08/writing-teds-ieee-14514-parser.html).
+The implementation is made according to the *IEEE 1451.4 Sensor Templates Overview* and *IEEE 1451.4 Smart Transducers Template Description Language* (TDL) documents. A vital clue was delivered by [*Andrew Walsh*](http://awalsh128.blogspot.dk/2011/08/writing-teds-ieee-14514-parser.html).
 
 Devices on which it has been tested:
 * NI-PXIe
