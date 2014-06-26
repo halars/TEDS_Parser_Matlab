@@ -6,8 +6,8 @@ The implementation is based on *IEEE 1451.4 Sensor Templates Overview* and *IEEE
 
 Devices on which it has been tested:
 * NI-PXIe
-* Compact
-* USB Devices
+* CompactDAQ
+* USB Carrier
 
 #Compiling
 Compile from MatLab console through mex-interface as follows:
