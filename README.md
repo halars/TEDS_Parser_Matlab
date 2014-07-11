@@ -1,6 +1,5 @@
 TEDS Parser for Matlab v1.0a (Experimental)
 ==================
-#Licence
 Copyright (c) 2013-2014, University of Southern Denmark, Kent Stark Olsen <kent.stark.olsen@gmail.com>
 All rights reserved.
 
