@@ -11,8 +11,8 @@ Devices on which it has been tested:
 
 #Compiling
 Compile from MatLab console through mex-interface as follows:
-* Compiling (getTEDS 64-bit):     **mex getTEDS.c NI-DAQmxInterface.c -L./lib/ -lNIDAQmx64 -v**
-* Compiling (resetDevice 64-bit): **mex resetDevice.c NI-DAQmxInterface.c -L./lib/ -lNIDAQmx64 -v**
+* Compiling (getTEDS 64-bit) - **mex getTEDS.c NI-DAQmxInterface.c -L./lib/ -lNIDAQmx64 -v**
+* Compiling (resetDevice 64-bit) - **mex resetDevice.c NI-DAQmxInterface.c -L./lib/ -lNIDAQmx64 -v**
 
 #Usage:
 Call the functions from MatLab console or implement them in scripts. The following are examples of calling the functions:
