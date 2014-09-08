@@ -31,12 +31,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #Description
 This mex-interface is written in C up against National Instruments (NI) NIDAQmx driver. It serves as a base for further implementation of TEDS support in MatLab. This was developed due to the lack of such support in MatLab DAQ Toolbox.
 
-The implementation is made according to the *IEEE 1451.4 Sensor Templates Overview* and *IEEE 1451.4 Smart Transducers Template Description Language* (TDL) documents. A vital clue was delivered by [*Andrew Walsh*](http://awalsh128.blogspot.dk/2011/08/writing-teds-ieee-14514-parser.html).
+The implementation is made according to the *IEEE 1451.4 Sensor Templates Overview* and *IEEE 1451.4 Smart Transducers Template Description Language* (TDL) documents.
 
-Devices on which it has been tested:
-* NI-PXIe
-* CompactDAQ
-* USB Carrier
+Devices on which it has been tested successfully:
+* NI PXIe 1073 (NI Expresscard-8360)
+* NI USB-9162 (NI 9234)
+* CompactDAQ (NI 9234)
 
 ##Compiling
 Compile from MatLab console through mex-interface as follows:
