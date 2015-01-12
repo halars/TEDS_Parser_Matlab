@@ -1,6 +1,6 @@
 TEDS Parser for Matlab v1.0a (Experimental)
 ==================
-Copyright (c) 2013-2014, University of Southern Denmark, Kent Stark Olsen - kent.stark.olsen@gmail.com<br>
+Copyright (c) 2013-2015, University of Southern Denmark, Kent Stark Olsen - kent.stark.olsen@gmail.com<br>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -36,6 +36,7 @@ The implementation is made according to the *IEEE 1451.4 Sensor Templates Overvi
 Devices on which it has been tested successfully:
 * NI PXIe 1073 (NI Expresscard-8360)
 * NI USB-9162 (NI 9234)
+* NI cDAQ-9171 (NI 9234)
 * CompactDAQ (NI 9234)
 
 ##Compiling
