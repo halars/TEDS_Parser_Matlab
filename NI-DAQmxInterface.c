@@ -7,7 +7,7 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
 {
     int32 status;
     uInt8 * stream;
-    uInt8 _template;
+    uInt8 _template, _selector;
     
 	status = DAQmxConfigureTEDS(channel, "");
 
@@ -36,8 +36,9 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
     {
         stream = getTedsDataStream(channel);
         _template = getTedsTemplate(stream);
+        _selector = getSelector(stream);
         
-        data->unit = getUnit(stream, _template);
+        data->unit = getUnit(stream, _template, _selector);
         data->sensitivity = getSensitivity(stream, _template);
     }
 
@@ -66,13 +67,29 @@ uInt8 getTedsTemplate(uInt8 * data)
     return (uInt8)_template;
 }
 
-char * getUnit(uInt8 * data, uInt8 _template)
+uInt8 getSelector(uInt8 * data)
+{
+    uInt8 _selector;
+    
+    //  Extract selector
+    _selector = 0;
+    _selector |= (data[9] & 12) >> 2;
+    
+    printf(" Selector: %d\n", _selector);
+    
+    return _selector;
+}
+
+char * getUnit(uInt8 * data, uInt8 _template, uInt8 _selector)
 {
     static char * unit;
     
     //  Decide unit from template according to IEEE 1451.4
     if (_template == 25)
-        unit = "V/(m/s^2)";
+        if (!_selector)
+            unit = "V/(m/s^2)";
+        else
+            unit = "V/N";
     else
         unit = "Unknown";
         

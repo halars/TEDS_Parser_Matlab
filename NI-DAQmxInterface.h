@@ -22,7 +22,8 @@ typedef struct
 int32 getBasicTEDS (const char* channel, BasicTEDS* userdata);
 uInt8 * getTedsDataStream(const char* channel);
 uInt8 getTedsTemplate(uInt8 * data);
+uInt8 getSelector(uInt8 * data);
 double getSensitivity(uInt8 * data, uInt8 _template);
-char * getUnit(uInt8 * data, uInt8 _template);
+char * getUnit(uInt8 * data, uInt8 _template, uInt8 _selector);
 
 int32 resetDevice (const char* device);
