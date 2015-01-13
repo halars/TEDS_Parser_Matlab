@@ -75,8 +75,6 @@ uInt8 getSelector(uInt8 * data)
     _selector = 0;
     _selector |= (data[9] & 12) >> 2;
     
-    printf(" Selector: %d\n", _selector);
-    
     return _selector;
 }
 
