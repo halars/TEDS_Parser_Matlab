@@ -64,7 +64,7 @@ uInt8 getTedsTemplate(uInt8 * data)
     _template |= (uInt32)data[8];
     _template = _template >> 2;
     
-    return (uInt8)_template;
+   return (uInt8)_template;
 }
 
 uInt8 getSelector(uInt8 * data)
@@ -109,7 +109,7 @@ double getSensitivity(uInt8 * data, uInt8 _template)
         sensitivityData = sensitivityData >> 4;
 
         //  Convert ConRelRes to real number
-        sensitivity = 0.0000005 * pow(1. + 2. * 0.00015, (double)sensitivityData);
+        sensitivity =  (double)sensitivityData; // 0.0000005 * pow(1. + 2. * 0.00015,
     //}
     //else
     //{
