@@ -100,8 +100,8 @@ double getSensitivity(uInt8 * data, uInt8 _template)
     double sensitivity;
     
     //  Get sensitivity @ ref. conditions (Accelerometer)
-    //if (_template == 25)
-    //{
+    if (_template == 25)
+    {
         sensitivityData = 0;
         sensitivityData |= ((uInt32)data[11] & 15) << 16;
         sensitivityData |= (uInt32)data[10] << 8;
@@ -109,12 +109,21 @@ double getSensitivity(uInt8 * data, uInt8 _template)
         sensitivityData = sensitivityData >> 4;
 
         //  Convert ConRelRes to real number
-        sensitivity =  (double)_template; // 0.0000005 * pow(1. + 2. * 0.00015,
-    //}
-    //else
-    //{
-    //    sensitivity = 0;
-    //}
+        sensitivity =  0.0000005 * pow(1. + 2. * 0.00015,(double)_template); // 0.0000005 * pow(1. + 2. * 0.00015,
+    }
+	elseif (_template == 12)
+	{
+		sensitivityData = 0;
+        	sensitivityData |= ((uInt32)data[11] & 15) << 16;
+        	sensitivityData |= (uInt32)data[10] << 8;
+        	sensitivityData |= (uInt32)data[9];
+        	sensitivityData = sensitivityData >> 4;
+		sensitivity = 0.00001 * pow(1.0001999959,(double)_template) * 1000;
+	}
+    else
+    {
+        sensitivity = 0;
+    }
     
     return sensitivity;
 }
