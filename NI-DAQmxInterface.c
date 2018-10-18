@@ -109,7 +109,7 @@ double getSensitivity(uInt8 * data, uInt8 _template)
         sensitivityData = sensitivityData >> 4;
 
         //  Convert ConRelRes to real number
-        sensitivity =  (double)sensitivityData; // 0.0000005 * pow(1. + 2. * 0.00015,
+        sensitivity =  (double)_template; // 0.0000005 * pow(1. + 2. * 0.00015,
     //}
     //else
     //{
