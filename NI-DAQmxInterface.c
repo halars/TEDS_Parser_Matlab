@@ -94,7 +94,7 @@ char * getUnit(uInt8 * data, uInt8 _template, uInt8 _selector)
     return unit;
 }
 
-double getSensitivity(uInt8 * data, uInt8 _template)
+uInt8 * getSensitivity(uInt8 * data, uInt8 _template)
 {
     uInt32 sensitivityData;
     // double sensitivity;
