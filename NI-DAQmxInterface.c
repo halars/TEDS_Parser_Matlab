@@ -110,8 +110,17 @@ double getSensitivity(uInt8 * data, uInt8 _template)
 
         //  Convert ConRelRes to real number
         sensitivity =  0.0000005 * pow(1. + 2. * 0.00015,(double)_template); // 0.0000005 * pow(1. + 2. * 0.00015,
-    }
-	elseif (_template == 12)
+    } 
+	else if (_template == 12)
+	{
+		sensitivityData = 0;
+        	sensitivityData |= ((uInt32)data[11] & 15) << 16;
+        	sensitivityData |= (uInt32)data[10] << 8;
+        	sensitivityData |= (uInt32)data[9];
+        	sensitivityData = sensitivityData >> 4;
+		sensitivity = 0.0001 * pow(1.0001999959,(double)_template) * 1000;
+	}
+	else if (_template == 27)
 	{
 		sensitivityData = 0;
         	sensitivityData |= ((uInt32)data[11] & 15) << 16;
