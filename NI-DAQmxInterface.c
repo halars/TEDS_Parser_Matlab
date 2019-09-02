@@ -94,11 +94,10 @@ char * getUnit(uInt8 * data, uInt8 _template, uInt8 _selector)
     return unit;
 }
 
-uInt8 * getSensitivity(uInt8 * data, uInt8 _template)
+double getSensitivity(uInt8 * data, uInt8 _template)
 {
     uInt32 sensitivityData;
-    // double sensitivity;
-	uInt8 * sensitivity;
+    double sensitivity;
     
     //  Get sensitivity @ ref. conditions (Accelerometer)
     if (_template == 25)
@@ -119,7 +118,7 @@ uInt8 * getSensitivity(uInt8 * data, uInt8 _template)
         	sensitivityData |= (uInt32)data[10] << 8;
         	sensitivityData |= (uInt32)data[9];
         	sensitivityData = sensitivityData >> 4;
-		sensitivity = data;
+		sensitivity = sensitivityData;
 		// sensitivity = 0.0001 * pow(1.0001999461431,(double)_template) * 1000;
 	}
 	else if (_template == 27)
