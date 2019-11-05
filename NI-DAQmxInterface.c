@@ -35,11 +35,14 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
     if (!status)
     {
         stream = getTedsDataStream(channel);
+        data->stream = (uInt8*)stream;
         _template = getTedsTemplate(stream);
         _selector = getSelector(stream);
         
         data->unit = getUnit(stream, _template, _selector);
         data->sensitivity = getSensitivity(stream, _template);
+        data->template = _template;
+        
     }
 
     return status;
@@ -88,6 +91,8 @@ char * getUnit(uInt8 * data, uInt8 _template, uInt8 _selector)
             unit = "V/(m/s^2)";
         else
             unit = "V/N";
+    else if (_template == 12)
+        unit = "V/Pa";
     else
         unit = "Unknown";
         
@@ -109,20 +114,23 @@ double getSensitivity(uInt8 * data, uInt8 _template)
         sensitivityData = sensitivityData >> 4;
 
         //  Convert ConRelRes to real number
-        sensitivity =  0.0000005 * pow(1. + 2. * 0.00015,(double)_template); // 0.0000005 * pow(1. + 2. * 0.00015,
+        sensitivity = 0.0000005 * pow(1. + 2. * 0.00015, (double)sensitivityData);
+        //sensitivity =  0.0000005 * pow(1. + 2. * 0.00015,(double)_template); // 0.0000005 * pow(1. + 2. * 0.00015,
     } 
 	else if (_template == 12)
 	{
+        // NOT CORRECT!
 		sensitivityData = 0;
-        	sensitivityData |= ((uInt32)data[11] & 15) << 16;
-        	sensitivityData |= (uInt32)data[10] << 8;
-        	sensitivityData |= (uInt32)data[9];
-        	sensitivityData = sensitivityData >> 4;
-		sensitivity = sensitivityData;
-		// sensitivity = 0.0001 * pow(1.0001999461431,(double)_template) * 1000;
+        	sensitivityData |= ((uInt32)data[13] & 15) << 16;
+        	sensitivityData |= (uInt32)data[12] << 8;
+        	sensitivityData |= (uInt32)data[11];
+        	sensitivityData = sensitivityData >> 2;
+        sensitivity = 100e-6 * pow(1. + 2. * 0.0001, (double)sensitivityData);
+
 	}
 	else if (_template == 27)
 	{
+        // NOT CORRECT!
 		sensitivityData = 0;
         	sensitivityData |= ((uInt32)data[11] & 15) << 16;
         	sensitivityData |= (uInt32)data[10] << 8;
@@ -134,9 +142,18 @@ double getSensitivity(uInt8 * data, uInt8 _template)
     {
         sensitivity = 0;
     }
+    //sensitivity = (double)data[12];
     
     return sensitivity;
 }
+
+// double getTemplate(uInt8 * data, uInt8 _template)
+// {
+//     double template;
+//     template = (double)_template;
+//     
+//     return template;
+// }
 
 int32 resetDevice (const char* device)
 {

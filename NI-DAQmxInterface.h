@@ -16,6 +16,8 @@ typedef struct
 	uInt32 	versionNumber;
 	uInt32 	serialNumber;
     double  sensitivity;
+    uInt32  stream;
+    double  template;
     char*   unit;
 } BasicTEDS;
 

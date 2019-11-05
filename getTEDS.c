@@ -8,6 +8,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	BasicTEDS basicTEDS;
     char* inputStr;
 	int status;
+    uInt8* stream;
     size_t bufLen;
     mwSize dims[2] = {1,1};
     mxArray* mxErrorCode        = mxCreateDoubleMatrix(1, 1, mxREAL);
@@ -16,6 +17,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxArray* mxVersionNum       = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxSerialNum        = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxSensitivity      = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxStream           = mxCreateDoubleMatrix(1, 1, mxREAL); //mxCreateNumericMatrix(1, 1, mxREAL, mxUINT8_CLASS);
+    mxArray* mxTemplate         = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxUnit             = mxCreateDoubleMatrix(1, 1, mxREAL);
             
     const char* basicTEDSFields[] = {	"Channel",
@@ -26,6 +29,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 										"VersionNumber",
 										"SerialNumber",
                                         "Sensitivity",
+                                        "Stream",
+                                        "Template",
                                         "Unit"};
 
     unsigned int numberOfBasicTEDSFields = sizeof(basicTEDSFields)/sizeof(*basicTEDSFields);
@@ -76,6 +81,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
         basicTEDS.versionNumber = 0;
         basicTEDS.serialNumber = 0;
         basicTEDS.sensitivity = 0;
+        basicTEDS.stream = 0;
+        basicTEDS.template = 0;
         basicTEDS.unit = " ";
 	}
         
@@ -109,6 +116,14 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     //  Sensitivity
     *mxGetPr(mxSensitivity) = basicTEDS.sensitivity;
     mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Sensitivity"), mxSensitivity);
+    
+    //  Stream
+    *mxGetPr(mxStream) = basicTEDS.stream;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream"), mxStream);
+    
+    //  Template
+    *mxGetPr(mxTemplate) = basicTEDS.template;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Template"), mxTemplate);
     
     //  Unit
     mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Unit"), mxCreateString(basicTEDS.unit));
