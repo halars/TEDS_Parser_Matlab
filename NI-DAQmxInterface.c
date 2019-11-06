@@ -35,7 +35,23 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
     if (!status)
     {
         stream = getTedsDataStream(channel);
-        data->stream = (uInt8*)stream;
+        data->stream1 = (uInt32)stream[1];
+        data->stream2 = (uInt32)stream[2];
+        data->stream3 = (uInt32)stream[3];
+        data->stream4 = (uInt32)stream[4];
+        data->stream5 = (uInt32)stream[5];
+        data->stream6 = (uInt32)stream[6];
+        data->stream7 = (uInt32)stream[7];
+        data->stream8 = (uInt32)stream[8];
+        data->stream9 = (uInt32)stream[9];
+        data->stream10 = (uInt32)stream[10];
+        data->stream11 = (uInt32)stream[11];
+        data->stream12 = (uInt32)stream[12];
+        data->stream13 = (uInt32)stream[13];
+        data->stream14 = (uInt32)stream[14];
+        data->stream15 = (uInt32)stream[15];
+        data->stream16 = (uInt32)stream[16];
+        data->stream17 = (int32)stream[1];
         _template = getTedsTemplate(stream);
         _selector = getSelector(stream);
         
@@ -60,14 +76,17 @@ uInt8 * getTedsDataStream(const char* channel)
 uInt8 getTedsTemplate(uInt8 * data)
 {
     uInt32 _template;
+    uInt32 A;
     
     //  Get TEDS template    
     _template = 0;
     _template |= ((uInt32)data[9] & 3) << 8;
+   
     _template |= (uInt32)data[8];
+     A = _template;
     _template = _template >> 2;
     
-   return (uInt8)_template;
+   return (uInt8)A;
 }
 
 uInt8 getSelector(uInt8 * data)
@@ -115,7 +134,7 @@ double getSensitivity(uInt8 * data, uInt8 _template)
 
         //  Convert ConRelRes to real number
         sensitivity = 0.0000005 * pow(1. + 2. * 0.00015, (double)sensitivityData);
-        //sensitivity =  0.0000005 * pow(1. + 2. * 0.00015,(double)_template); // 0.0000005 * pow(1. + 2. * 0.00015,
+
     } 
 	else if (_template == 12)
 	{
@@ -147,13 +166,6 @@ double getSensitivity(uInt8 * data, uInt8 _template)
     return sensitivity;
 }
 
-// double getTemplate(uInt8 * data, uInt8 _template)
-// {
-//     double template;
-//     template = (double)_template;
-//     
-//     return template;
-// }
 
 int32 resetDevice (const char* device)
 {
