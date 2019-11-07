@@ -9,7 +9,8 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
     uInt8 * stream;
     uInt8 _template, _selector;
     
-	status = DAQmxConfigureTEDS(channel, "");
+	//status = DAQmxConfigureTEDS(channel, "");
+    status = 0;
 
     //  Get manufacturer ID
     if (!status)	//	No warnings or errors
@@ -52,7 +53,15 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
         data->stream14 = (uInt32)stream[14];
         data->stream15 = (uInt32)stream[15];
         data->stream16 = (uInt32)stream[16];
-        data->stream17 = (int32)stream[1];
+        data->stream17 = (uInt32)stream[17];
+        data->stream18 = (uInt32)stream[18];
+        data->stream19 = (uInt32)stream[19];
+        data->stream20 = (uInt32)stream[20];
+        data->stream21 = (uInt32)stream[21];
+        data->stream22 = (uInt32)stream[22];
+        data->stream23 = (uInt32)stream[23];
+        data->stream24 = (uInt32)stream[24];
+        data->stream25 = (uInt32)stream[25];
         _template = getTedsTemplate(stream);
         _selector = getSelector(stream);
         
@@ -68,7 +77,7 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
 
 uInt8 * getTedsDataStream(const char* channel)
 {
-    static uInt8 data[1000];
+    static uInt8 data[495];
     
     DAQmxGetPhysicalChanTEDSBitStream(channel, data, 495);
     
@@ -194,7 +203,7 @@ double getDate(uInt8 * data, uInt8 _template)
         	timeData |= (uInt32)data[10] << 8;
         	timeData |= (uInt32)data[9];
         	timeData = timeData >> 2;
-        
+ 
         
 
 	}
