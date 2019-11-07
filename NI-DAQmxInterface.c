@@ -9,8 +9,8 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
     uInt8 * stream;
     uInt8 _template, _selector;
     
-	//status = DAQmxConfigureTEDS(channel, "");
-    status = 0;
+	status = DAQmxConfigureTEDS(channel, "");
+    //status = 0;
 
     //  Get manufacturer ID
     if (!status)	//	No warnings or errors
