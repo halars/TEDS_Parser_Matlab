@@ -66,7 +66,7 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
 
 uInt8 * getTedsDataStream(const char* channel)
 {
-    static uInt8 data[495];
+    static uInt8 data[1000];
     
     DAQmxGetPhysicalChanTEDSBitStream(channel, data, 495);
     
@@ -86,7 +86,7 @@ uInt8 getTedsTemplate(uInt8 * data)
      A = _template;
     _template = _template >> 2;
     
-   return (uInt8)A;
+   return (uInt8)_template;
 }
 
 uInt8 getSelector(uInt8 * data)
@@ -140,9 +140,9 @@ double getSensitivity(uInt8 * data, uInt8 _template)
 	{
         // NOT CORRECT!
 		sensitivityData = 0;
-        	sensitivityData |= ((uInt32)data[13] & 15) << 16;
-        	sensitivityData |= (uInt32)data[12] << 8;
-        	sensitivityData |= (uInt32)data[11];
+        	sensitivityData |= ((uInt32)data[11] & 3) << 16;
+        	sensitivityData |= (uInt32)data[10] << 8;
+        	sensitivityData |= (uInt32)data[9];
         	sensitivityData = sensitivityData >> 2;
         sensitivity = 100e-6 * pow(1. + 2. * 0.0001, (double)sensitivityData);
 
@@ -161,6 +161,7 @@ double getSensitivity(uInt8 * data, uInt8 _template)
     {
         sensitivity = 0;
     }
+    sensitivity = (double)sensitivityData;
     //sensitivity = (double)data[12];
     
     return sensitivity;
