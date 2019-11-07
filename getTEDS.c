@@ -17,6 +17,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxArray* mxVersionNum       = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxSerialNum        = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxSensitivity      = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxDate             = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxStream0          = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxStream1          = mxCreateDoubleMatrix(1, 1, mxREAL); //mxCreateNumericMatrix(1, 1, mxREAL, mxUINT8_CLASS);
     mxArray* mxStream2          = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxStream3          = mxCreateDoubleMatrix(1, 1, mxREAL);
@@ -45,6 +47,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     "VersionNumber",
     "SerialNumber",
     "Sensitivity",
+    "Date",
+    "Stream0",
     "Stream1",
     "Stream2",
     "Stream3",
@@ -113,6 +117,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
         basicTEDS.versionNumber = 0;
         basicTEDS.serialNumber = 0;
         basicTEDS.sensitivity = 0;
+        basicTEDS.date = 0;
         basicTEDS.stream1 = 0;
         basicTEDS.stream2 = 0;
         basicTEDS.stream3 = 0;
@@ -165,7 +170,13 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     *mxGetPr(mxSensitivity) = basicTEDS.sensitivity;
     mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Sensitivity"), mxSensitivity);
     
+    //  Date
+    *mxGetPr(mxDate) = basicTEDS.date;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Date"), mxDate);
+    
     //  Stream
+    *mxGetPr(mxStream0) = basicTEDS.stream0;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream0"), mxStream0);
     *mxGetPr(mxStream1) = basicTEDS.stream1;
     mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream1"), mxStream1);
     *mxGetPr(mxStream2) = basicTEDS.stream2;

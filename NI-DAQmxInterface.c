@@ -35,6 +35,7 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
     if (!status)
     {
         stream = getTedsDataStream(channel);
+        data->stream0 = (uInt32)stream[0];
         data->stream1 = (uInt32)stream[1];
         data->stream2 = (uInt32)stream[2];
         data->stream3 = (uInt32)stream[3];
@@ -55,6 +56,7 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
         _template = getTedsTemplate(stream);
         _selector = getSelector(stream);
         
+        data->date = getDate(stream, _template);
         data->unit = getUnit(stream, _template, _selector);
         data->sensitivity = getSensitivity(stream, _template);
         data->template = _template;
@@ -165,6 +167,44 @@ double getSensitivity(uInt8 * data, uInt8 _template)
     //sensitivity = (double)data[12];
     
     return sensitivity;
+}
+
+
+double getDate(uInt8 * data, uInt8 _template)
+{
+    uInt32 timeData;
+    double date;
+    
+    //  Get sensitivity @ ref. conditions (Accelerometer)
+    if (_template == 25)
+    {
+        // who knows...
+        timeData = 0;
+        timeData |= ((uInt32)data[11] & 15) << 16;
+        timeData |= (uInt32)data[10] << 8;
+        timeData |= (uInt32)data[9];
+        timeData = timeData >> 4;
+
+    } 
+	else if (_template == 12)
+	{
+        
+		timeData = 0;
+        	timeData |= ((uInt32)data[11] & 3) << 16;
+        	timeData |= (uInt32)data[10] << 8;
+        	timeData |= (uInt32)data[9];
+        	timeData = timeData >> 2;
+        
+        
+
+	}
+    else
+    {
+        date = 0;
+    }
+    date = (double)timeData;
+    
+    return date;
 }
 
 

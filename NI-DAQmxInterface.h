@@ -16,6 +16,8 @@ typedef struct
 	uInt32 	versionNumber;
 	uInt32 	serialNumber;
     double  sensitivity;
+    double  date;
+    uInt32  stream0;
     uInt32  stream1;
     uInt32  stream2;
     uInt32  stream3;
@@ -32,7 +34,7 @@ typedef struct
     uInt32  stream14;
     uInt32  stream15;
     uInt32  stream16;
-    int32  stream17;
+    uInt32  stream17;
     double  template;
     char*   unit;
 } BasicTEDS;
@@ -42,6 +44,7 @@ uInt8 * getTedsDataStream(const char* channel);
 uInt8 getTedsTemplate(uInt8 * data);
 uInt8 getSelector(uInt8 * data);
 double getSensitivity(uInt8 * data, uInt8 _template);
+double getDate(uInt8 * data, uInt8 _template);
 char * getUnit(uInt8 * data, uInt8 _template, uInt8 _selector);
 
 int32 resetDevice (const char* device);
