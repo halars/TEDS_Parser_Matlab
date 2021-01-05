@@ -43,6 +43,14 @@ typedef struct
     uInt32  stream23;
     uInt32  stream24;
     uInt32  stream25;
+    uInt32  stream26;
+    uInt32  stream27;
+    uInt32  stream28;
+    uInt32  stream29;
+    uInt32  stream30;
+    uInt32  stream31;
+    uInt32  stream32;
+    uInt32  stream33;
     double  template;
     char*   unit;
 } BasicTEDS;

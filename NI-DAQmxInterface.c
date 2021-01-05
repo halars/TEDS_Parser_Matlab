@@ -62,6 +62,13 @@ int32 getBasicTEDS (const char* channel, BasicTEDS* data)
         data->stream23 = (uInt32)stream[23];
         data->stream24 = (uInt32)stream[24];
         data->stream25 = (uInt32)stream[25];
+        data->stream26 = (uInt32)stream[26];
+        data->stream27 = (uInt32)stream[27];
+        data->stream28 = (uInt32)stream[28];
+        data->stream29 = (uInt32)stream[29];
+        data->stream30 = (uInt32)stream[30];
+        data->stream31 = (uInt32)stream[31];
+        data->stream32 = (uInt32)stream[32];
         _template = getTedsTemplate(stream);
         _selector = getSelector(stream);
         

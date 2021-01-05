@@ -44,6 +44,13 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxArray* mxStream23         = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxStream24         = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxStream25         = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxStream26         = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxStream27         = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxStream28         = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxStream29         = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxStream30         = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxStream31         = mxCreateDoubleMatrix(1, 1, mxREAL);
+    mxArray* mxStream32         = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxTemplate         = mxCreateDoubleMatrix(1, 1, mxREAL);
     mxArray* mxUnit             = mxCreateDoubleMatrix(1, 1, mxREAL);
             
@@ -82,6 +89,13 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     "Stream23",
     "Stream24",
     "Stream25",
+    "Stream26",
+    "Stream27",
+    "Stream28",
+    "Stream29",
+    "Stream30",
+    "Stream31",
+    "Stream32",
     "Template",
     "Unit"};
 
@@ -159,6 +173,13 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
         basicTEDS.stream23 = 0;
         basicTEDS.stream24 = 0;
         basicTEDS.stream25 = 0;
+        basicTEDS.stream26 = 0;
+        basicTEDS.stream27 = 0;
+        basicTEDS.stream28 = 0;
+        basicTEDS.stream29 = 0;
+        basicTEDS.stream30 = 0;
+        basicTEDS.stream31 = 0;
+        basicTEDS.stream32 = 0;
         basicTEDS.template = 0;
         basicTEDS.unit = " ";
 	}
@@ -251,6 +272,21 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream24"), mxStream24);
     *mxGetPr(mxStream25) = basicTEDS.stream25;
     mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream25"), mxStream25);
+    
+    *mxGetPr(mxStream26) = basicTEDS.stream26;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream26"), mxStream26);
+    *mxGetPr(mxStream27) = basicTEDS.stream27;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream27"), mxStream27);
+    *mxGetPr(mxStream28) = basicTEDS.stream28;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream28"), mxStream28);
+    *mxGetPr(mxStream29) = basicTEDS.stream29;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream29"), mxStream29);
+    *mxGetPr(mxStream30) = basicTEDS.stream30;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream30"), mxStream30);
+    *mxGetPr(mxStream31) = basicTEDS.stream31;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream31"), mxStream31);
+    *mxGetPr(mxStream32) = basicTEDS.stream32;
+    mxSetFieldByNumber(plhs[0], 0, mxGetFieldNumber(plhs[0], "Stream32"), mxStream32);
     
     //  Template
     *mxGetPr(mxTemplate) = basicTEDS.template;
